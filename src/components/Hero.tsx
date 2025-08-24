@@ -2,14 +2,14 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ChevronDown, Play, Award, Users, Eye, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Play, Award, Users, Eye, ArrowRight } from 'lucide-react';
 
 const Hero = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setIsLoaded(true);
+    setMounted(true);
   }, []);
 
   const stats = [
@@ -48,6 +48,37 @@ const Hero = () => {
     hidden: { opacity: 0, y: 60 },
     visible: { opacity: 1, y: 0 }
   };
+
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!mounted) {
+    return (
+      <>
+        <div className="h-20 lg:h-24 w-full" />
+        <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pb-32 lg:pb-44">
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-black-100 via-brand-black-200 to-brand-black-100" />
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-black-100/95 via-brand-black-100/60 to-brand-black-100/80" />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-black-100/90 via-transparent to-brand-black-100/30" />
+          </div>
+          <div className="relative z-20 text-center container-custom">
+            <div className="max-w-6xl mx-auto flex flex-col gap-14 lg:gap-20">
+              <div className="mb-4 lg:mb-8">
+                <h1 className="text-display text-5xl sm:text-6xl lg:text-8xl xl:text-9xl font-bold text-white leading-[0.9] mb-4 lg:mb-8">
+                  <span className="block">VISUAL</span>
+                  <span className="block">
+                    <span className="gradient-text">STORYTELLING</span>
+                  </span>
+                  <span className="block text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-light text-white/90 mt-2 lg:mt-4">
+                    REDEFINED
+                  </span>
+                </h1>
+              </div>
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
 
   return (
     <>
@@ -114,7 +145,7 @@ const Hero = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={isLoaded ? "visible" : "hidden"}
+          animate="visible"
           className="max-w-6xl mx-auto flex flex-col gap-14 lg:gap-20"
         >
           {/* Main Heading */}
@@ -170,7 +201,7 @@ const Hero = () => {
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 30 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.2 + index * 0.15 }}
                 className="group relative flex-1 min-w-[220px]"
               >

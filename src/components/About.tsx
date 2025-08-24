@@ -71,12 +71,26 @@ const About = () => {
   return (
     <section id="about" className="relative py-28 lg:py-40 bg-brand-gray-850 overflow-hidden">
       {/* SVG Accents */}
-      <svg className="absolute top-0 left-0 w-64 h-64 opacity-20 -z-10" viewBox="0 0 400 400" fill="none"><ellipse cx="200" cy="200" rx="200" ry="200" fill="url(#paint0_radial)" /></svg>
-      <svg className="absolute bottom-0 right-0 w-80 h-80 opacity-10 -z-10" viewBox="0 0 400 400" fill="none"><ellipse cx="200" cy="200" rx="200" ry="200" fill="url(#paint1_radial)" /></svg>
-      <defs>
-        <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientTransform="translate(200 200) scale(200)" gradientUnits="userSpaceOnUse"><stop stopColor="#EF4444" /><stop offset="1" stopColor="#18181b" stopOpacity="0" /></radialGradient>
-        <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientTransform="translate(200 200) scale(200)" gradientUnits="userSpaceOnUse"><stop stopColor="#EF4444" /><stop offset="1" stopColor="#18181b" stopOpacity="0" /></radialGradient>
-      </defs>
+      <svg className="absolute top-0 left-0 w-64 h-64 opacity-20 -z-10" viewBox="0 0 400 400" fill="none">
+        <defs>
+          <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientTransform="translate(200 200) scale(200)" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#EF4444" />
+            <stop offset="1" stopColor="#18181b" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <ellipse cx="200" cy="200" rx="200" ry="200" fill="url(#paint0_radial)" />
+      </svg>
+      
+      <svg className="absolute bottom-0 right-0 w-80 h-80 opacity-10 -z-10" viewBox="0 0 400 400" fill="none">
+        <defs>
+          <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientTransform="translate(200 200) scale(200)" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#EF4444" />
+            <stop offset="1" stopColor="#18181b" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <ellipse cx="200" cy="200" rx="200" ry="200" fill="url(#paint1_radial)" />
+      </svg>
+      
       <div className="container-custom">
         {/* Enhanced Header */}
         <motion.div
@@ -235,10 +249,16 @@ const About = () => {
           className="mb-32 lg:mb-48 relative"
         >
           {/* SVG Accent Behind Cards */}
-          <svg className="absolute -top-24 left-1/2 -translate-x-1/2 w-[900px] h-64 opacity-20 pointer-events-none -z-10" viewBox="0 0 900 200" fill="none"><ellipse cx="450" cy="100" rx="450" ry="100" fill="url(#services-accent)" /></svg>
-          <defs>
-            <radialGradient id="services-accent" cx="0" cy="0" r="1" gradientTransform="translate(450 100) scale(450 100)" gradientUnits="userSpaceOnUse"><stop stopColor="#EF4444" /><stop offset="1" stopColor="#18181b" stopOpacity="0" /></radialGradient>
-          </defs>
+          <svg className="absolute -top-24 left-1/2 -translate-x-1/2 w-[900px] h-64 opacity-20 pointer-events-none -z-10" viewBox="0 0 900 200" fill="none">
+            <defs>
+              <radialGradient id="services-accent" cx="0" cy="0" r="1" gradientTransform="translate(450 100) scale(450 100)" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#EF4444" />
+                <stop offset="1" stopColor="#18181b" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+            <ellipse cx="450" cy="100" rx="450" ry="100" fill="url(#services-accent)" />
+          </svg>
+          
           <div className="text-center mb-20 lg:mb-28">
             <h3 className="text-display text-5xl lg:text-7xl font-extrabold text-white mb-8 tracking-tight drop-shadow-lg">
               Our <span className="gradient-text">Services</span>
@@ -263,7 +283,9 @@ const About = () => {
                 className="relative bg-gradient-to-br from-brand-gray-800/80 to-brand-black-100/80 rounded-3xl p-12 xl:p-16 pb-14 border border-white/10 shadow-xl group flex flex-col items-center gap-8 hover:shadow-2xl transition-all duration-300 text-center"
               >
                 {/* SVG Accent in Card */}
-                <svg className="absolute -top-8 -right-8 w-24 h-24 opacity-10 pointer-events-none" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="50" fill="#EF4444" /></svg>
+                <svg className="absolute -top-8 -right-8 w-24 h-24 opacity-10 pointer-events-none" viewBox="0 0 100 100" fill="none">
+                  <circle cx="50" cy="50" r="50" fill="#EF4444" />
+                </svg>
                 <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-brand rounded-2xl mb-4 shadow-glow group-hover:shadow-glow-lg transition-shadow duration-300">
                   <service.icon size={40} className="text-white drop-shadow-lg" />
                 </div>
@@ -285,7 +307,9 @@ const About = () => {
         {/* Enhanced CTA Section */}
         {/* SVG Divider/Accent between cards and CTA */}
         <div className="flex justify-center items-center w-full mt-24 mb-0">
-          <svg className="w-2/3 h-8" viewBox="0 0 600 32" fill="none"><path d="M0 16 Q300 48 600 16" stroke="#EF4444" strokeWidth="2" fill="none" opacity="0.12"/></svg>
+          <svg className="w-2/3 h-8" viewBox="0 0 600 32" fill="none">
+            <path d="M0 16 Q300 48 600 16" stroke="#EF4444" strokeWidth="2" fill="none" opacity="0.12"/>
+          </svg>
         </div>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -295,10 +319,16 @@ const About = () => {
           className="relative flex justify-center items-center mt-52 lg:mt-60 mb-24 lg:mb-36"
         >
           {/* SVG Accent Behind CTA */}
-          <svg className="absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-64 opacity-20 pointer-events-none -z-10" viewBox="0 0 700 200" fill="none"><ellipse cx="350" cy="100" rx="350" ry="100" fill="url(#cta-accent)" /></svg>
-          <defs>
-            <radialGradient id="cta-accent" cx="0" cy="0" r="1" gradientTransform="translate(350 100) scale(350 100)" gradientUnits="userSpaceOnUse"><stop stopColor="#EF4444" /><stop offset="1" stopColor="#18181b" stopOpacity="0" /></radialGradient>
-          </defs>
+          <svg className="absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-64 opacity-20 pointer-events-none -z-10" viewBox="0 0 700 200" fill="none">
+            <defs>
+              <radialGradient id="cta-accent" cx="0" cy="0" r="1" gradientTransform="translate(350 100) scale(350 100)" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#EF4444" />
+                <stop offset="1" stopColor="#18181b" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+            <ellipse cx="350" cy="100" rx="350" ry="100" fill="url(#cta-accent)" />
+          </svg>
+          
           <div className="glass-light rounded-3xl px-10 pt-16 pb-20 lg:px-24 lg:pt-24 lg:pb-28 border border-white/10 relative overflow-hidden w-full max-w-3xl flex flex-col items-center text-center shadow-2xl">
             {/* Background Animation */}
             <div className="absolute inset-0 -z-10">
@@ -320,7 +350,7 @@ const About = () => {
               Ready to Tell Your Story?
             </h3>
             <p className="text-body text-xl lg:text-2xl text-white/80 mb-10 max-w-2xl mx-auto">
-              Let's collaborate to create something extraordinary. Whether you need a complete brand overhaul or stunning visual content, we're here to bring your vision to life.
+              Let&apos;s collaborate to create something extraordinary. Whether you need a complete brand overhaul or stunning visual content, we&apos;re here to bring your vision to life.
             </p>
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
