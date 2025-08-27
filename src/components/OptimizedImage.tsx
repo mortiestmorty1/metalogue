@@ -66,14 +66,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     >
       <Image
         {...imageProps}
-        onLoad={(e) => {
-          const target = e.target as HTMLImageElement;
-          target.style.opacity = '1';
-        }}
-        style={{
-          opacity: 0,
-          transition: 'opacity 0.3s ease-in-out',
-        }}
+        className={`transition-all duration-300 ${className}`}
       />
     </motion.div>
   );

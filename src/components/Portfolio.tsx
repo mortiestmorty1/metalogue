@@ -3,7 +3,7 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, ExternalLink, X, Grid3X3, List } from 'lucide-react';
-import OptimizedImage from './OptimizedImage';
+import Image from 'next/image';
 
 interface PortfolioItem {
   id: string;
@@ -565,12 +565,11 @@ const Portfolio = () => {
                         item.isShort ? 'aspect-[9/16]' : 'aspect-video'
                       }`}>
                         {/* YouTube Thumbnail */}
-                        <OptimizedImage
+                        <Image
                           src={item.thumbnail || ''}
                           alt={item.title}
                           fill
                           className="object-cover group-hover:scale-110 transition-transform duration-700"
-                          priority={false}
                         />
                         
                         {/* Play Button Overlay */}
@@ -595,12 +594,11 @@ const Portfolio = () => {
                         </div>
                       </div>
                     ) : item.image ? (
-                      <OptimizedImage
+                      <Image
                         src={item.image}
                         alt={item.title}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-700"
-                        priority={false}
                       />
                     ) : null}
                     
@@ -739,12 +737,11 @@ const Portfolio = () => {
                       </div>
                     </div>
                   ) : selectedItem.image ? (
-                    <OptimizedImage
+                    <Image
                       src={selectedItem.image}
                       alt={selectedItem.title}
                       fill
                       className="object-cover"
-                      priority={false}
                     />
                   ) : null}
                 </div>

@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Play, Award, Users, Eye, ArrowRight } from 'lucide-react';
-import OptimizedImage from './OptimizedImage';
+import Image from 'next/image';
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
@@ -93,7 +93,7 @@ const Hero = () => {
         transition={{ duration: 1.2 }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-brand-black-100 via-brand-black-200 to-brand-black-100" />
-        <OptimizedImage
+        <Image
           src="/assets/Best Work of Metalogue/Fashion Shoot/5 wallpaper.jpg"
           alt="Hero Background"
           fill
