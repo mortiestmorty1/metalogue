@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import React, { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Play, Award, Users, Eye, ArrowRight } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
@@ -12,7 +12,7 @@ const Hero = () => {
     setMounted(true);
   }, []);
 
-  const stats = [
+  const stats = useMemo(() => [
     { 
       icon: Award, 
       label: 'Projects Completed', 
@@ -31,7 +31,7 @@ const Hero = () => {
       value: '1M+',
       description: 'Views generated across platforms'
     },
-  ];
+  ], []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -93,12 +93,12 @@ const Hero = () => {
         transition={{ duration: 1.2 }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-brand-black-100 via-brand-black-200 to-brand-black-100" />
-        <Image
+        <OptimizedImage
           src="/assets/Best Work of Metalogue/Fashion Shoot/5 wallpaper.jpg"
           alt="Hero Background"
           fill
           className="object-cover object-center"
-          priority
+          priority={true}
           quality={100}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-brand-black-100/95 via-brand-black-100/60 to-brand-black-100/80" />

@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
-import Image from 'next/image';
+import React, { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, ExternalLink, X, Grid3X3, List } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
 
 interface PortfolioItem {
   id: string;
@@ -26,14 +26,15 @@ const Portfolio = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(9);
+
   
-  const handleLoadMore = () => setVisibleCount(prev => prev + 6);
-  const handleCategoryChange = (category: string) => {
+  const handleLoadMore = useCallback(() => setVisibleCount(prev => prev + 6), []);
+  const handleCategoryChange = useCallback((category: string) => {
     setSelectedCategory(category);
     setVisibleCount(9); // Reset to initial count when changing categories
-  };
+  }, []);
 
-  const portfolioItems: PortfolioItem[] = [
+  const portfolioItems: PortfolioItem[] = useMemo(() => [
     // ADs
     { 
       id: '1', 
@@ -370,7 +371,7 @@ const Portfolio = () => {
       description: 'Lifestyle-focused user-generated content with personal touch.',
       tags: ['UGC', 'Lifestyle', 'Personal']
     },
-  ];
+  ], []);
 
   const categories = [
     { name: 'All', count: portfolioItems.length },
@@ -381,11 +382,17 @@ const Portfolio = () => {
       }))
   ];
 
-  const filteredItems = selectedCategory === 'All' 
-    ? portfolioItems 
-    : portfolioItems.filter(item => item.category === selectedCategory);
+  const filteredItems = useMemo(() => 
+    selectedCategory === 'All' 
+      ? portfolioItems 
+      : portfolioItems.filter(item => item.category === selectedCategory),
+    [selectedCategory, portfolioItems]
+  );
 
-  const displayedItems = filteredItems.slice(0, visibleCount);
+  const displayedItems = useMemo(() => 
+    filteredItems.slice(0, visibleCount),
+    [filteredItems, visibleCount]
+  );
   
   // Show Load More button only if there are more filtered items to show
   const hasMoreItems = displayedItems.length < filteredItems.length;
@@ -558,11 +565,12 @@ const Portfolio = () => {
                         item.isShort ? 'aspect-[9/16]' : 'aspect-video'
                       }`}>
                         {/* YouTube Thumbnail */}
-                        <Image
+                        <OptimizedImage
                           src={item.thumbnail || ''}
                           alt={item.title}
                           fill
                           className="object-cover group-hover:scale-110 transition-transform duration-700"
+                          priority={false}
                         />
                         
                         {/* Play Button Overlay */}
@@ -587,11 +595,12 @@ const Portfolio = () => {
                         </div>
                       </div>
                     ) : item.image ? (
-                      <Image
+                      <OptimizedImage
                         src={item.image}
                         alt={item.title}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-700"
+                        priority={false}
                       />
                     ) : null}
                     
@@ -730,11 +739,12 @@ const Portfolio = () => {
                       </div>
                     </div>
                   ) : selectedItem.image ? (
-                    <Image
+                    <OptimizedImage
                       src={selectedItem.image}
                       alt={selectedItem.title}
                       fill
                       className="object-cover"
+                      priority={false}
                     />
                   ) : null}
                 </div>
