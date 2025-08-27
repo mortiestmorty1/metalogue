@@ -13,30 +13,76 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Metalogue Studio - Creative Production House",
-  description: "Professional photography, videography, branding, and digital marketing services. We create compelling visual narratives that elevate brands through innovative storytelling.",
-  keywords: ["photography", "videography", "branding", "digital marketing", "creative agency", "visual storytelling"],
-  authors: [{ name: "Metalogue Studio" }],
+  title: {
+    default: "Metalogue Studio - Creative Production House | Islamabad, Pakistan",
+    template: "%s | Metalogue Studio"
+  },
+  description: "Leading creative production house in Islamabad, Pakistan. Specializing in professional photography, videography, branding, digital marketing, and social media management. We create compelling visual narratives that elevate brands through innovative storytelling and cutting-edge creative solutions.",
+  keywords: [
+    "creative agency",
+    "production house",
+    "photography",
+    "videography", 
+    "branding",
+    "logo design",
+    "digital marketing",
+    "social media management",
+    "UGC content",
+    "advertising",
+    "creative direction",
+    "visual storytelling",
+    "brand identity",
+    "marketing campaigns",
+    "product photography",
+    "fashion photography",
+    "commercial photography",
+    "video production",
+    "content creation",
+    "social media content",
+    "brand strategy",
+    "marketing strategy",
+    "creative services",
+    "Islamabad",
+    "Pakistan"
+  ],
+  authors: [{ name: "Metalogue Studio", url: "https://metalogue.studio" }],
   creator: "Metalogue Studio",
   publisher: "Metalogue Studio",
+  category: "Creative Agency",
+  classification: "Business",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   metadataBase: new URL("https://metalogue.studio"),
+  alternates: {
+    canonical: "https://metalogue.studio",
+  },
   openGraph: {
-    title: "Metalogue Studio - Creative Production House",
-    description: "Professional photography, videography, branding, and digital marketing services.",
+    title: "Metalogue Studio - Creative Production House | Islamabad, Pakistan",
+    description: "Leading creative production house in Islamabad, Pakistan. Professional photography, videography, branding, and digital marketing services that elevate brands through innovative storytelling.",
     url: "https://metalogue.studio",
     siteName: "Metalogue Studio",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/assets/Best Work of Metalogue/Branding/MATALOGUE.png",
+        width: 1200,
+        height: 630,
+        alt: "Metalogue Studio - Creative Production House",
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Metalogue Studio - Creative Production House",
-    description: "Professional photography, videography, branding, and digital marketing services.",
+    title: "Metalogue Studio - Creative Production House | Islamabad, Pakistan",
+    description: "Leading creative production house in Islamabad, Pakistan. Professional photography, videography, branding, and digital marketing services.",
+    images: ["/assets/Best Work of Metalogue/Branding/MATALOGUE.png"],
+    creator: "@metalogue_",
+    site: "@metalogue_",
   },
   robots: {
     index: true,
@@ -49,6 +95,17 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "your-google-verification-code", // Add your Google Search Console verification code
+  },
+  other: {
+    "theme-color": "#dc2626",
+    "color-scheme": "dark",
+    "msapplication-TileColor": "#dc2626",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
+    "apple-mobile-web-app-title": "Metalogue Studio",
+  },
 };
 
 export default function RootLayout({
@@ -58,6 +115,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta name="theme-color" content="#dc2626" />
+        <meta name="msapplication-TileColor" content="#dc2626" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Metalogue Studio" />
+        
+        {/* Preconnect to external domains for performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.youtube.com" />
+        <link rel="preconnect" href="https://img.youtube.com" />
+        
+        {/* DNS prefetch for performance */}
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning

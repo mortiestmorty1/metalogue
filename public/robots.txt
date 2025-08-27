@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://metalogue.studio/sitemap.xml
+
+# Disallow admin or private areas (if any)
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Allow important directories
+Allow: /assets/
+Allow: /images/
+Allow: /videos/
+
+# Crawl delay (optional)
+Crawl-delay: 1
