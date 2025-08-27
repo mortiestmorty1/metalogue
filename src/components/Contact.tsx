@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, Send, Instagram, Facebook, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { AnimatePresence } from 'framer-motion';
 
 const Contact = () => {
@@ -127,10 +127,7 @@ const Contact = () => {
     }
   ];
 
-  const socialLinks = [
-    { icon: Instagram, href: 'https://www.instagram.com/metalogue_/?hl=en', label: 'Instagram', color: 'hover:text-pink-400' },
-    { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61564221756891#', label: 'Facebook', color: 'hover:text-blue-600' }
-  ];
+
 
   const projectTypes = [
     'Brand Identity & Logo Design',

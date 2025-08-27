@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Instagram, Facebook, ArrowUp, Heart, ExternalLink } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, Facebook, ArrowUp, Heart } from 'lucide-react';
 
 const Footer = () => {
   const scrollToTop = () => {
