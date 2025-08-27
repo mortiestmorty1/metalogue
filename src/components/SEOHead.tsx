@@ -6,6 +6,20 @@ import Head from 'next/head';
 const SEOHead: React.FC = () => {
   return (
     <Head>
+      {/* Favicon Configuration */}
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+      <link rel="icon" href="/favicon.png" type="image/png" />
+      <link rel="apple-touch-icon" href="/favicon.png" />
+      <link rel="manifest" href="/manifest.json" />
+      
+      {/* Viewport and Theme */}
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+      <meta name="theme-color" content="#dc2626" />
+      <meta name="msapplication-TileColor" content="#dc2626" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      <meta name="apple-mobile-web-app-title" content="Metalogue Studio" />
+      
       {/* Additional Meta Tags for SEO */}
       <meta name="author" content="Metalogue Studio" />
       <meta name="copyright" content="Metalogue Studio" />
@@ -64,15 +78,10 @@ const SEOHead: React.FC = () => {
       <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       
-      {/* Additional Favicon Links */}
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#dc2626" />
-      
       {/* Microsoft Tiles */}
       <meta name="msapplication-config" content="/browserconfig.xml" />
       <meta name="msapplication-TileColor" content="#dc2626" />
-      <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+      <meta name="msapplication-TileImage" content="/favicon.png" />
       
       {/* Theme Colors */}
       <meta name="theme-color" content="#dc2626" media="(prefers-color-scheme: light)" />
