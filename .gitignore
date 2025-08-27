@@ -9,6 +9,14 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+public/assets/**/*.psd
+public/assets/**/*.ai
+public/assets/**/*.pdf
+public/assets/**/*.mp4
+public/assets/**/*.mov
+public/assets/**/*.avi
+public/assets/**/*.mkv
+public/assets/**/*.wmv
 
 # testing
 /coverage
