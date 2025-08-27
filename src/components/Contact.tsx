@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, Send, Instagram, Twitter, Facebook, Linkedin, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, Instagram, Facebook, CheckCircle, AlertCircle } from 'lucide-react';
 import { AnimatePresence } from 'framer-motion';
 
 const Contact = () => {
@@ -69,8 +69,14 @@ const Contact = () => {
     
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    // Create mailto link with form data
+    const subject = `New Project Inquiry: ${formData.project}`;
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\nBudget: ${formData.budget}\nProject Type: ${formData.project}\n\nMessage:\n${formData.message}`;
+    
+    const mailtoLink = `mailto:Zulqafilammer@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Open default email client
+    window.location.href = mailtoLink;
     
     setSubmitStatus('success');
     setIsSubmitting(false);
@@ -93,24 +99,23 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email',
-      value: 'hello@metalogue.studio',
-      href: 'mailto:hello@metalogue.studio',
+      value: 'Zulqafilammer@gmail.com',
+      href: 'mailto:Zulqafilammer@gmail.com',
       description: 'Drop us a line anytime'
     },
     {
       icon: Phone,
       title: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567',
-      description: 'Mon-Fri from 8am to 5pm'
+      value: '+92 335 833 3027',
+      href: 'tel:+923358333027',
+      description: 'Mon-Fri from 9am to 6pm'
     },
     {
       icon: MapPin,
       title: 'Studio',
-      value: 'Downtown Creative District',
-      location: 'New York, NY 10013',
+      value: 'F10 Markaz Islamabad Pakistan',
       href: '#',
-      description: 'Come visit our creative space'
+      description: 'Visit our creative studio'
     },
     {
       icon: Clock,
@@ -123,10 +128,8 @@ const Contact = () => {
   ];
 
   const socialLinks = [
-    { icon: Instagram, href: 'https://instagram.com/metalogue', label: 'Instagram', color: 'hover:text-pink-400' },
-    { icon: Twitter, href: 'https://twitter.com/metalogue', label: 'Twitter', color: 'hover:text-blue-400' },
-    { icon: Facebook, href: 'https://facebook.com/metalogue', label: 'Facebook', color: 'hover:text-blue-600' },
-    { icon: Linkedin, href: 'https://linkedin.com/company/metalogue', label: 'LinkedIn', color: 'hover:text-blue-500' }
+    { icon: Instagram, href: 'https://www.instagram.com/metalogue_/?hl=en', label: 'Instagram', color: 'hover:text-pink-400' },
+    { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61564221756891#', label: 'Facebook', color: 'hover:text-blue-600' }
   ];
 
   const projectTypes = [
@@ -164,7 +167,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 lg:py-32 bg-brand-gray-850">
+    <section id="contact" className="py-32 lg:py-40 bg-brand-gray-850">
       <div className="container-custom">
         {/* Enhanced Header */}
         <motion.div
@@ -172,17 +175,17 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16 lg:mb-20"
+          className="text-center mb-20 lg:mb-24"
         >
-          <h2 className="text-display text-5xl lg:text-7xl xl:text-8xl font-bold text-white mb-8 leading-[0.9]">
-            Let's <span className="gradient-text">Connect</span>
+          <h2 className="text-display text-5xl lg:text-7xl xl:text-8xl font-bold text-white mb-12 leading-[0.9]">
+            Let&apos;s <span className="gradient-text">Connect</span>
           </h2>
           <p className="text-body text-xl lg:text-2xl text-white/80 max-w-4xl mx-auto">
-            Ready to bring your vision to life? Get in touch with us and let's create something amazing together.
+            Ready to bring your vision to life? Get in touch with us and let&apos;s create something amazing together.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-5 gap-16 lg:gap-20">
+        <div className="grid grid-cols-1 xl:grid-cols-5 gap-20 lg:gap-24">
           {/* Enhanced Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -191,16 +194,16 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             className="xl:col-span-3"
           >
-            <div className="glass-light rounded-3xl p-8 lg:p-12 border border-white/10">
-              <h3 className="text-display text-3xl lg:text-4xl font-bold text-white mb-8">
+            <div className="glass-light rounded-3xl p-10 lg:p-16 border border-white/10">
+              <h3 className="text-display text-3xl lg:text-4xl font-bold text-white mb-12">
                 Start Your Project
               </h3>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="space-y-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   {/* Name */}
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-4">
                       Full Name *
                     </label>
                     <input
@@ -209,7 +212,7 @@ const Contact = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 bg-brand-black-100 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-brand-red-600 transition-colors ${
+                      className={`w-full px-6 py-5 bg-brand-black-100 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-brand-red-600 transition-colors ${
                         errors.name ? 'border-red-500' : 'border-white/20 hover:border-white/40'
                       }`}
                       placeholder="John Doe"
@@ -218,7 +221,7 @@ const Contact = () => {
                       <motion.p
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-red-400 text-sm mt-1 flex items-center space-x-1"
+                        className="text-red-400 text-sm mt-3 flex items-center space-x-1"
                       >
                         <AlertCircle size={14} />
                         <span>{errors.name}</span>
@@ -228,7 +231,7 @@ const Contact = () => {
                   
                   {/* Email */}
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-4">
                       Email Address *
                     </label>
                     <input
@@ -237,7 +240,7 @@ const Contact = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 bg-brand-black-100 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-brand-red-600 transition-colors ${
+                      className={`w-full px-6 py-5 bg-brand-black-100 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-brand-red-600 transition-colors ${
                         errors.email ? 'border-red-500' : 'border-white/20 hover:border-white/40'
                       }`}
                       placeholder="john@company.com"
@@ -246,7 +249,7 @@ const Contact = () => {
                       <motion.p
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-red-400 text-sm mt-1 flex items-center space-x-1"
+                        className="text-red-400 text-sm mt-3 flex items-center space-x-1"
                       >
                         <AlertCircle size={14} />
                         <span>{errors.email}</span>
@@ -255,10 +258,10 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   {/* Company */}
                   <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-white/80 mb-2">
+                    <label htmlFor="company" className="block text-sm font-medium text-white/80 mb-4">
                       Company
                     </label>
                     <input
@@ -267,14 +270,14 @@ const Contact = () => {
                       name="company"
                       value={formData.company}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-brand-black-100 border border-white/20 hover:border-white/40 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-brand-red-600 transition-colors"
+                      className="w-full px-6 py-5 bg-brand-black-100 border border-white/20 hover:border-white/40 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-brand-red-600 transition-colors"
                       placeholder="Your Company"
                     />
                   </div>
 
                   {/* Budget */}
                   <div>
-                    <label htmlFor="budget" className="block text-sm font-medium text-white/80 mb-2">
+                    <label htmlFor="budget" className="block text-sm font-medium text-white/80 mb-4">
                       Budget Range
                     </label>
                     <select
@@ -282,7 +285,7 @@ const Contact = () => {
                       name="budget"
                       value={formData.budget}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-brand-black-100 border border-white/20 hover:border-white/40 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-brand-red-600 transition-colors"
+                      className="w-full px-6 py-5 bg-brand-black-100 border border-white/20 hover:border-white/40 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-brand-red-600 transition-colors"
                     >
                       <option value="">Select budget range</option>
                       {budgetRanges.map((range) => (
@@ -296,7 +299,7 @@ const Contact = () => {
                 
                 {/* Project Type */}
                 <div>
-                  <label htmlFor="project" className="block text-sm font-medium text-white/80 mb-2">
+                  <label htmlFor="project" className="block text-sm font-medium text-white/80 mb-4">
                     Project Type *
                   </label>
                   <select
@@ -304,7 +307,7 @@ const Contact = () => {
                     name="project"
                     value={formData.project}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 bg-brand-black-100 border rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-brand-red-600 transition-colors ${
+                    className={`w-full px-6 py-5 bg-brand-black-100 border rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-brand-red-600 transition-colors ${
                       errors.project ? 'border-red-500' : 'border-white/20 hover:border-white/40'
                     }`}
                   >
@@ -319,7 +322,7 @@ const Contact = () => {
                     <motion.p
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="text-red-400 text-sm mt-1 flex items-center space-x-1"
+                      className="text-red-400 text-sm mt-3 flex items-center space-x-1"
                     >
                       <AlertCircle size={14} />
                       <span>{errors.project}</span>
@@ -329,7 +332,7 @@ const Contact = () => {
                 
                 {/* Message */}
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-white/80 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-white/80 mb-4">
                     Project Details *
                   </label>
                   <textarea
@@ -337,8 +340,8 @@ const Contact = () => {
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    rows={6}
-                    className={`w-full px-4 py-3 bg-brand-black-100 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-brand-red-600 transition-colors resize-none ${
+                    rows={8}
+                    className={`w-full px-6 py-5 bg-brand-black-100 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-brand-red-600 transition-colors resize-none ${
                       errors.message ? 'border-red-500' : 'border-white/20 hover:border-white/40'
                     }`}
                     placeholder="Tell us about your project goals, timeline, and any specific requirements..."
@@ -347,7 +350,7 @@ const Contact = () => {
                     <motion.p
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="text-red-400 text-sm mt-1 flex items-center space-x-1"
+                      className="text-red-400 text-sm mt-3 flex items-center space-x-1"
                     >
                       <AlertCircle size={14} />
                       <span>{errors.message}</span>
@@ -361,7 +364,7 @@ const Contact = () => {
                   disabled={isSubmitting}
                   whileHover={{ scale: isSubmitting ? 1 : 1.02, y: isSubmitting ? 0 : -2 }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                  className="w-full btn-primary text-lg py-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-3"
+                  className="w-full btn-primary text-lg py-6 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-3 mt-12"
                 >
                   {isSubmitting ? (
                     <div className="loading-dots">
@@ -385,10 +388,10 @@ const Contact = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="flex items-center space-x-2 text-green-400 bg-green-400/10 p-4 rounded-xl border border-green-400/20"
+                      className="flex items-center space-x-2 text-green-400 bg-green-400/10 p-6 rounded-xl border border-green-400/20"
                     >
                       <CheckCircle size={20} />
-                      <span>Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.</span>
+                      <span>Thank you! Your message has been sent successfully. We&apos;ll get back to you within 24 hours.</span>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -402,7 +405,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="xl:col-span-2 space-y-8"
+            className="xl:col-span-2 space-y-12"
           >
             {/* Contact Details */}
             <motion.div
@@ -410,9 +413,9 @@ const Contact = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="space-y-6"
+              className="space-y-8"
             >
-              <h3 className="text-display text-2xl lg:text-3xl font-bold text-white mb-8">
+              <h3 className="text-display text-2xl lg:text-3xl font-bold text-white mb-10">
                 Get in Touch
               </h3>
               
@@ -421,89 +424,23 @@ const Contact = () => {
                   key={info.title}
                   variants={itemVariants}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="glass-light rounded-2xl p-6 hover-lift group border border-white/10"
+                  className="glass-light rounded-2xl p-8 hover-lift group border border-white/10"
                 >
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-brand rounded-xl flex items-center justify-center shadow-glow">
-                      <info.icon size={20} className="text-white" />
+                  <div className="flex items-start space-x-5">
+                    <div className="flex-shrink-0 w-14 h-14 bg-gradient-brand rounded-xl flex items-center justify-center shadow-glow">
+                      <info.icon size={24} className="text-white" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-white font-semibold mb-1">{info.title}</h4>
-                      <p className="text-white/80 font-medium">{info.value}</p>
-                      {info.location && (
-                        <p className="text-white/60 text-sm">{info.location}</p>
-                      )}
+                      <h4 className="text-white font-semibold mb-2 text-lg">{info.title}</h4>
+                      <p className="text-white/80 font-medium text-base">{info.value}</p>
                       {info.extra && (
-                        <p className="text-white/60 text-sm">{info.extra}</p>
+                        <p className="text-white/60 text-sm mt-1">{info.extra}</p>
                       )}
-                      <p className="text-white/50 text-sm mt-2">{info.description}</p>
+                      <p className="text-white/50 text-sm mt-3">{info.description}</p>
                     </div>
                   </div>
                 </motion.div>
               ))}
-            </motion.div>
-
-            {/* Social Media */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="glass-light rounded-2xl p-6 border border-white/10"
-            >
-              <h4 className="text-xl font-semibold text-white mb-6">Follow Our Journey</h4>
-              <div className="grid grid-cols-2 gap-4">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`flex items-center space-x-3 p-4 bg-white/5 rounded-xl text-white/70 hover:text-white ${social.color} transition-colors border border-white/10 hover:border-white/30`}
-                  >
-                    <social.icon size={20} />
-                    <span className="font-medium">{social.label}</span>
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Quick Info Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="glass-light rounded-2xl p-6 border border-white/10 relative overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-red-600/10 to-transparent"></div>
-              <div className="relative">
-                <h4 className="text-xl font-semibold text-white mb-4">Why Choose Metalogue?</h4>
-                <ul className="space-y-3 text-white/80">
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle size={16} className="text-brand-red-600 flex-shrink-0" />
-                    <span>5+ years of creative excellence</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle size={16} className="text-brand-red-600 flex-shrink-0" />
-                    <span>150+ successful projects delivered</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle size={16} className="text-brand-red-600 flex-shrink-0" />
-                    <span>Award-winning creative team</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <CheckCircle size={16} className="text-brand-red-600 flex-shrink-0" />
-                    <span>24/7 project support</span>
-                  </li>
-                </ul>
-              </div>
             </motion.div>
           </motion.div>
         </div>

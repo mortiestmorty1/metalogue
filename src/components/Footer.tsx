@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Instagram, Twitter, Facebook, Linkedin, ArrowUp, Heart, ExternalLink } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, Facebook, ArrowUp, Heart, ExternalLink } from 'lucide-react';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -33,17 +33,6 @@ const Footer = () => {
         { name: 'Contact', href: '#contact' }
       ]
     },
-    resources: {
-      title: 'Resources',
-      links: [
-        { name: 'Creative Blog', href: '#', external: true },
-        { name: 'Brand Guidelines', href: '#', external: true },
-        { name: 'Design Inspiration', href: '#', external: true },
-        { name: 'Project Briefs', href: '#', external: true },
-        { name: 'FAQ', href: '#contact' },
-        { name: 'Support Center', href: '#contact' }
-      ]
-    },
     legal: {
       title: 'Legal',
       links: [
@@ -58,53 +47,38 @@ const Footer = () => {
   const socialLinks = [
     { 
       icon: Instagram, 
-      href: 'https://instagram.com/metalogue', 
+      href: 'https://www.instagram.com/metalogue_/?hl=en', 
       label: 'Instagram',
       color: 'hover:text-pink-400',
       followers: '12.5K'
     },
     { 
-      icon: Twitter, 
-      href: 'https://twitter.com/metalogue', 
-      label: 'Twitter',
-      color: 'hover:text-blue-400',
-      followers: '8.2K'
-    },
-    { 
       icon: Facebook, 
-      href: 'https://facebook.com/metalogue', 
+      href: 'https://www.facebook.com/profile.php?id=61564221756891#', 
       label: 'Facebook',
       color: 'hover:text-blue-600',
       followers: '15.1K'
-    },
-    { 
-      icon: Linkedin, 
-      href: 'https://linkedin.com/company/metalogue', 
-      label: 'LinkedIn',
-      color: 'hover:text-blue-500',
-      followers: '5.7K'
     }
   ];
 
   const contactInfo = [
     { 
       icon: Mail, 
-      text: 'hello@metalogue.studio', 
-      href: 'mailto:hello@metalogue.studio',
+      text: 'Zulqafilammer@gmail.com', 
+      href: 'mailto:Zulqafilammer@gmail.com',
       label: 'Email Us'
     },
     { 
       icon: Phone, 
-      text: '+1 (555) 123-4567', 
-      href: 'tel:+15551234567',
+      text: '+92 335 833 3027', 
+      href: 'tel:+923358333027',
       label: 'Call Us'
     },
     { 
       icon: MapPin, 
-      text: 'Downtown Creative District, NY', 
-      href: 'https://maps.google.com',
-      label: 'Visit Us',
-      external: true
+      text: 'F10 Markaz Islamabad Pakistan', 
+      href: '#',
+      label: 'Visit Us'
     }
   ];
 
@@ -144,7 +118,7 @@ const Footer = () => {
           viewport={{ once: true }}
           className="py-16 lg:py-20"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-16">
             {/* Brand Section */}
             <motion.div
               variants={itemVariants}
@@ -186,25 +160,6 @@ const Footer = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* Newsletter Signup */}
-                <div className="space-y-3">
-                  <h4 className="text-white font-semibold">Stay Updated</h4>
-                  <div className="flex space-x-2">
-                    <input
-                      type="email"
-                      placeholder="Enter your email"
-                      className="flex-1 px-4 py-2 bg-white/5 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-brand-red-600 transition-colors text-sm"
-                    />
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="px-4 py-2 bg-gradient-brand rounded-lg text-white font-medium text-sm hover:shadow-glow transition-all"
-                    >
-                      Subscribe
-                    </motion.button>
-                  </div>
-                </div>
               </div>
             </motion.div>
 
@@ -215,7 +170,7 @@ const Footer = () => {
             >
               <h4 className="text-lg font-semibold text-white mb-6">{footerSections.services.title}</h4>
               <ul className="space-y-3">
-                {footerSections.services.links.map((link, index) => (
+                {footerSections.services.links.map((link) => (
                   <li key={link.name}>
                     <motion.button
                       onClick={() => scrollToSection(link.href)}
@@ -229,48 +184,25 @@ const Footer = () => {
               </ul>
             </motion.div>
 
-            {/* Company */}
+            {/* Company & Contact */}
             <motion.div
               variants={itemVariants}
               transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <h4 className="text-lg font-semibold text-white mb-6">{footerSections.company.title}</h4>
-              <ul className="space-y-3">
-                {footerSections.company.links.map((link, index) => (
-                  <li key={link.name}>
-                    <motion.button
-                      onClick={() => scrollToSection(link.href)}
-                      className="text-white/60 hover:text-white transition-colors duration-200 text-sm group flex items-center"
-                      whileHover={{ x: 5 }}
-                    >
-                      <span>{link.name}</span>
-                    </motion.button>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Resources & Contact */}
-            <motion.div
-              variants={itemVariants}
-              transition={{ duration: 0.6, delay: 0.3 }}
               className="space-y-8"
             >
-              {/* Resources */}
+              {/* Company */}
               <div>
-                <h4 className="text-lg font-semibold text-white mb-6">{footerSections.resources.title}</h4>
+                <h4 className="text-lg font-semibold text-white mb-6">{footerSections.company.title}</h4>
                 <ul className="space-y-3">
-                  {footerSections.resources.links.slice(0, 4).map((link, index) => (
+                  {footerSections.company.links.map((link) => (
                     <li key={link.name}>
-                      <motion.a
-                        href={link.href}
+                      <motion.button
+                        onClick={() => scrollToSection(link.href)}
                         className="text-white/60 hover:text-white transition-colors duration-200 text-sm group flex items-center"
                         whileHover={{ x: 5 }}
-                        {...(link.external && { target: "_blank", rel: "noopener noreferrer" })}
                       >
                         <span>{link.name}</span>
-                        {link.external && <ExternalLink size={12} className="ml-1 opacity-60" />}
-                      </motion.a>
+                      </motion.button>
                     </li>
                   ))}
                 </ul>
@@ -286,7 +218,6 @@ const Footer = () => {
                         href={info.href}
                         className="flex items-center space-x-3 text-white/60 hover:text-white transition-colors duration-200 group"
                         whileHover={{ x: 5 }}
-                        {...(info.external && { target: "_blank", rel: "noopener noreferrer" })}
                       >
                         <div className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center group-hover:bg-brand-red-600/20 transition-colors">
                           <info.icon size={14} className="text-brand-red-600" />
@@ -366,7 +297,7 @@ const Footer = () => {
               <span>© 2024 Metalogue Studio. All rights reserved.</span>
               <span>Made with</span>
               <Heart size={14} className="text-brand-red-600 animate-pulse" />
-              <span>in New York</span>
+              <span>in Islamabad</span>
             </motion.div>
             
             {/* Legal Links */}

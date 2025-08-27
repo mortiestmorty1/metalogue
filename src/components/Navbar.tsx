@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
@@ -93,7 +92,7 @@ const Navbar = () => {
             className="hidden lg:block btn-primary text-sm font-semibold px-6 py-3"
             onClick={() => scrollToSection('#contact')}
           >
-            Let's Talk
+            Let&apos;s Talk
           </motion.button>
 
           {/* Mobile Menu Button */}
@@ -158,7 +157,7 @@ const Navbar = () => {
                   className="btn-primary w-full mt-6"
                   onClick={() => scrollToSection('#contact')}
                 >
-                  Let's Talk
+                  Let&apos;s Talk
                 </motion.button>
               </div>
             </div>

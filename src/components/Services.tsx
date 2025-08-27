@@ -123,12 +123,12 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="text-center mb-32 w-full"
+              className="text-center mb-32 w-full flex flex-col items-center justify-center min-h-[50vh]"
             >
               <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-12 leading-[0.9]">
                 Our <span className="gradient-text">Services</span>
               </h2>
-              <p className="text-xl lg:text-2xl xl:text-3xl text-gray-300 max-w-5xl mx-auto leading-relaxed">
+              <p className="text-xl lg:text-2xl xl:text-3xl text-gray-300 max-w-6xl mx-auto leading-relaxed">
                 We offer comprehensive creative services designed to elevate your brand and 
                 create meaningful connections with your audience through powerful visual storytelling.
               </p>
@@ -240,11 +240,11 @@ const Services = () => {
               transition={{ duration: 0.8 }}
               className="mb-40 w-full relative"
             >
-              <div className="text-center mb-32 w-full">
+              <div className="text-center mb-32 w-full flex flex-col items-center justify-center min-h-[40vh]">
                 <h3 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-white mb-12 leading-[0.9]">
                   Our <span className="gradient-text">Process</span>
                 </h3>
-                <p className="text-xl lg:text-2xl xl:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed text-center">
+                <p className="text-xl lg:text-2xl xl:text-3xl text-gray-300 max-w-5xl mx-auto leading-relaxed text-center">
                   We follow a proven process to ensure exceptional results for every project.
                 </p>
               </div>

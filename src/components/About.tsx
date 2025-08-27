@@ -193,7 +193,7 @@ const About = () => {
                 <p>
                   Our team of creative professionals brings together diverse expertise in photography, 
                   videography, branding, and digital marketing to deliver comprehensive solutions 
-                  tailored to each client's unique needs and vision.
+                  tailored to each client&apos;s unique needs and vision.
                 </p>
               </div>
 
@@ -259,11 +259,11 @@ const About = () => {
             <ellipse cx="450" cy="100" rx="450" ry="100" fill="url(#services-accent)" />
           </svg>
           
-          <div className="text-center mb-20 lg:mb-28">
+          <div className="text-center mb-20 lg:mb-28 flex flex-col items-center justify-center min-h-[40vh]">
             <h3 className="text-display text-5xl lg:text-7xl font-extrabold text-white mb-8 tracking-tight drop-shadow-lg">
               Our <span className="gradient-text">Services</span>
             </h3>
-            <p className="text-body text-2xl lg:text-3xl text-white/80 max-w-3xl mx-auto font-medium">
+            <p className="text-body text-2xl lg:text-3xl text-white/80 max-w-4xl mx-auto font-medium leading-relaxed">
               We offer comprehensive creative services designed to elevate your brand and create meaningful connections with your audience.
             </p>
           </div>

@@ -25,16 +25,13 @@ const Portfolio = () => {
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
-
-  const categories = [
-    { name: 'All', count: 30 },
-    { name: 'ADs', count: 5 },
-    { name: 'Branding', count: 4 },
-    { name: 'Fashion Shoot', count: 6 },
-    { name: 'Product Photography', count: 6 },
-    { name: 'SMM', count: 5 },
-    { name: 'UGC', count: 4 }
-  ];
+  const [visibleCount, setVisibleCount] = useState(9);
+  
+  const handleLoadMore = () => setVisibleCount(prev => prev + 6);
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    setVisibleCount(9); // Reset to initial count when changing categories
+  };
 
   const portfolioItems: PortfolioItem[] = [
     // ADs
@@ -375,9 +372,23 @@ const Portfolio = () => {
     },
   ];
 
+  const categories = [
+    { name: 'All', count: portfolioItems.length },
+    ...['ADs', 'Branding', 'Fashion Shoot', 'Product Photography', 'SMM', 'UGC']
+      .map(cat => ({
+        name: cat,
+        count: portfolioItems.filter(item => item.category === cat).length
+      }))
+  ];
+
   const filteredItems = selectedCategory === 'All' 
     ? portfolioItems 
     : portfolioItems.filter(item => item.category === selectedCategory);
+
+  const displayedItems = filteredItems.slice(0, visibleCount);
+  
+  // Show Load More button only if there are more filtered items to show
+  const hasMoreItems = displayedItems.length < filteredItems.length;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -433,12 +444,12 @@ const Portfolio = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-32"
+            className="text-center mb-32 flex flex-col items-center justify-center min-h-[40vh]"
           >
             <h2 className="text-display text-5xl lg:text-7xl xl:text-8xl font-bold text-white mb-12 leading-[0.9]">
               Our <span className="gradient-text">Portfolio</span>
             </h2>
-            <p className="text-body text-xl lg:text-2xl xl:text-3xl text-white/80 max-w-5xl mx-auto leading-relaxed">
+            <p className="text-body text-xl lg:text-2xl xl:text-3xl text-white/80 max-w-6xl mx-auto leading-relaxed">
               Discover our diverse range of creative work spanning advertising, branding, 
               fashion photography, product shoots, and social media content.
             </p>
@@ -453,12 +464,12 @@ const Portfolio = () => {
             className="flex flex-col lg:flex-row justify-between items-center gap-8 mb-24"
           >
             {/* Category Filter */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-6">
               {categories.map((category) => (
                 <motion.button
                   key={category.name}
-                  onClick={() => setSelectedCategory(category.name)}
-                  className={`px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 ${
+                  onClick={() => handleCategoryChange(category.name)}
+                  className={`px-10 py-5 rounded-full text-base font-medium transition-all duration-300 min-w-fit whitespace-nowrap ${
                     selectedCategory === category.name
                       ? 'bg-gradient-brand text-white shadow-glow'
                       : 'glass-light text-white/70 hover:text-white hover:bg-white/10 border border-white/20'
@@ -466,8 +477,10 @@ const Portfolio = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {category.name}
-                  <span className="ml-2 text-xs opacity-70">({category.count})</span>
+                  <span className="flex items-center justify-center">
+                    {category.name}
+                    <span className="ml-3 text-sm opacity-70">({category.count})</span>
+                  </span>
                 </motion.button>
               ))}
             </div>
@@ -515,7 +528,7 @@ const Portfolio = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className={`relative grid gap-20 xl:gap-28 ${
+            className={`relative grid gap-16 xl:gap-20 ${
               viewMode === 'grid' 
                 ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' 
                 : 'grid-cols-1 lg:grid-cols-2'
@@ -528,13 +541,17 @@ const Portfolio = () => {
                   variants={itemVariants}
                   transition={{ duration: 0.6, delay: index * 0.05 }}
                   layout
-                  className={`group relative overflow-hidden rounded-3xl glass-light hover-lift hover-glow cursor-pointer border border-white/10 p-16 xl:p-20 pb-24 flex flex-col justify-between shadow-2xl shadow-black/20 ${
-                    viewMode === 'list' ? 'lg:flex-row' : ''
+                  className={`group relative overflow-hidden rounded-3xl glass-light hover-lift hover-glow cursor-pointer border border-white/10 flex flex-col justify-between shadow-2xl shadow-black/20 ${
+                    viewMode === 'list' 
+                      ? 'lg:flex-row lg:p-16 xl:p-20 lg:pb-20 p-16 xl:p-20 pb-20' 
+                      : 'p-16 xl:p-20 pb-20'
                   }`}
                   onClick={() => item.isVideo ? handleVideoClick(item.videoUrl!) : setSelectedItem(item)}
                 >
                   <div className={`relative overflow-hidden ${
-                    viewMode === 'list' ? 'lg:w-1/2' : 'aspect-[4/3]'
+                    viewMode === 'list' 
+                      ? 'lg:w-1/2 lg:mx-0 lg:mt-0 mx-8 mt-8 aspect-[4/3] lg:aspect-square' 
+                      : 'mx-8 lg:mx-10 xl:mx-12 mt-8 lg:mt-10 aspect-[4/3]'
                   }`}>
                     {item.isVideo ? (
                       <div className={`w-full h-full relative overflow-hidden rounded-2xl ${
@@ -560,7 +577,7 @@ const Portfolio = () => {
                         </div>
                         
                         {/* Video Info */}
-                        <div className="absolute bottom-4 left-4 right-4">
+                        <div className="absolute bottom-6 left-6 right-6">
                           <div className="flex items-center justify-between">
                             <span className="text-sm bg-black/70 text-white px-4 py-2 rounded-full backdrop-blur-sm font-medium">
                               {item.isShort ? 'YouTube Short' : 'YouTube Video'}
@@ -580,9 +597,9 @@ const Portfolio = () => {
                     
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-black-100/90 via-brand-black-100/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-6 left-6 right-6">
+                      <div className="absolute bottom-8 left-8 right-8">
                         <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
+                          <div className="flex items-center space-x-4">
                             {item.tags?.slice(0, 2).map((tag, idx) => (
                               <span key={idx} className="text-sm bg-white/20 text-white px-4 py-2 rounded-full">
                                 {tag}
@@ -596,26 +613,46 @@ const Portfolio = () => {
                   </div>
 
                   {/* Content */}
-                  <div className={`flex-1 flex flex-col justify-between ${viewMode === 'list' ? 'lg:w-1/2' : ''}`}>
-                    <div>
-                      <div className="flex items-center justify-between mb-6">
+                  <div className={`flex-1 flex flex-col justify-between ${viewMode === 'list' ? 'lg:w-1/2 lg:pl-8' : ''}`}>
+                    <div className={`${
+                      viewMode === 'list' 
+                        ? 'px-8 lg:px-0 lg:py-0' 
+                        : 'px-8 lg:px-12 xl:px-16'
+                    }`}>
+                      <div className="flex items-center justify-between mb-6 lg:mb-8">
                         <span className="text-brand-red-600 text-sm font-medium">{item.category}</span>
                         {item.year && (
-                          <span className="text-white/40 text-xs">{item.year}</span>
+                          <span className="text-white/40 text-sm">{item.year}</span>
                         )}
                       </div>
-                      <h3 className="text-xl lg:text-2xl xl:text-3xl font-bold text-white mb-6 group-hover:text-brand-red-600 transition-colors leading-tight">
+                      <h3 className={`font-bold text-white group-hover:text-brand-red-600 transition-colors leading-tight ${
+                        viewMode === 'list' 
+                          ? 'text-lg lg:text-xl xl:text-2xl mb-6 lg:mb-8' 
+                          : 'text-xl lg:text-2xl xl:text-3xl mb-8'
+                      }`}>
                         {item.title}
                       </h3>
                       {item.client && (
-                        <p className="text-white/60 text-sm mb-6">Client: {item.client}</p>
+                        <p className={`text-white/60 text-sm ${
+                          viewMode === 'list' ? 'mb-6 lg:mb-8' : 'mb-8'
+                        }`}>
+                          Client: {item.client}
+                        </p>
                       )}
                       {item.description && (
-                        <p className="text-white/70 text-sm lg:text-base xl:text-lg line-clamp-2 group-hover:text-white/90 transition-colors mb-10 leading-relaxed">
+                        <p className={`text-white/70 group-hover:text-white/90 transition-colors leading-relaxed ${
+                          viewMode === 'list' 
+                            ? 'text-sm lg:text-base mb-8 line-clamp-4' 
+                            : 'text-sm lg:text-base xl:text-lg mb-10 line-clamp-3'
+                        }`}>
                           {item.description}
                         </p>
                       )}
                     </div>
+                    {/* Bottom spacing to prevent content from touching bottom border */}
+                    <div className={`${
+                      viewMode === 'list' ? 'h-8 lg:h-10' : 'h-10 lg:h-12'
+                    }`}></div>
                   </div>
                 </motion.div>
               ))}
@@ -623,21 +660,24 @@ const Portfolio = () => {
           </motion.div>
 
           {/* Load More Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-center mt-40"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-secondary px-12 py-6 text-lg lg:text-xl"
+          {hasMoreItems && (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-center mt-40"
             >
-              Load More Projects
-            </motion.button>
-          </motion.div>
+              <motion.button
+                onClick={handleLoadMore}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-secondary px-12 py-6 text-lg lg:text-xl"
+              >
+                Load More Projects
+              </motion.button>
+            </motion.div>
+          )}
         </div>
         
         {/* Bottom Spacing */}
@@ -747,38 +787,18 @@ const Portfolio = () => {
 
       {/* Video Modal */}
       {selectedVideo && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm"
-          onClick={closeVideo}
-        >
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            className="relative max-w-5xl w-full glass-light rounded-3xl overflow-hidden border border-white/20 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={closeVideo}
-              className="absolute top-6 right-6 z-10 w-12 h-12 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors"
-            >
-              <X size={24} />
+        <motion.div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/90">
+          <div className="relative w-full max-w-4xl aspect-video">
+            <iframe
+              src={getYouTubeEmbedUrl(selectedVideo, selectedVideo.includes('/shorts/'))}
+              className="w-full h-full rounded-2xl"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            />
+            <button onClick={closeVideo} className="absolute top-4 right-4 text-white">
+              <X size={28} />
             </button>
-            
-            <div className="relative">
-              <iframe
-                src={getYouTubeEmbedUrl(selectedVideo, selectedVideo.includes('/shorts/'))}
-                title="YouTube Video"
-                className="w-full aspect-video"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-          </motion.div>
+          </div>
         </motion.div>
       )}
     </>
